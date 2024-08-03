@@ -6,6 +6,8 @@ const dataEmployees = [
     group: "1",
     departement: "Aplikasi Bisnis",
     position: "Officer",
+    email: "agas@gmail.com",
+    phone: "+62-812-3456-789",
   },
   {
     id: "2",
@@ -40,3 +42,5 @@ const dataEmployees = [
     position: "Administrator",
   },
 ];
+
+console.log(dataEmployees);

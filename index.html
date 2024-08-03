@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-purple-900 text-white flex flex-col">
+      <div class="p-4 text-center text-lg font-bold">
+        <div class="flex items-center justify-center">
+          <img src="logo-placeholder.png" alt="Company Logo" class="h-10 w-10 mr-2">
+          <span>Company name</span>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="p-4 space-y-4">
+          <li><a href="#" class="flex items-center text-white"><span class="ml-2">Dashboard</span></a></li>
+          <li><a href="#" class="flex items-center text-white"><span class="ml-2">User management</span></a></li>
+          <li><a href="#" class="flex items-center text-white"><span class="ml-2">Documents</span></a></li>
+          <li><a href="#" class="flex items-center text-white"><span class="ml-2">Statistics</span></a></li>
+          <li><a href="#" class="flex items-center text-white"><span class="ml-2">Settings</span></a></li>
+        </ul>
+      </nav>
+      <div class="p-4">
+        <button class="w-full py-2 bg-purple-800 hover:bg-purple-700 text-white rounded">Logout</button>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-grow p-6">
+      <header class="flex items-center justify-between mb-6">
+        <input type="text" placeholder="Search all..." class="w-1/3 p-2 border rounded">
+        <div class="flex items-center">
+          <button class="mr-4 p-2 rounded-full bg-purple-100">
+            <span class="sr-only">Notifications</span>
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118.5 14.5V11a7.5 7.5 0 00-15 0v3.5c0 .538-.214 1.05-.595 1.405L2 17h5m0 0a3 3 0 006 0m-6 0h6"></path></svg>
+          </button>
+          <img src="user-placeholder.png" alt="User Avatar" class="h-10 w-10 rounded-full">
+        </div>
+      </header>
+      <section>
+        <div class="flex justify-between items-center mb-4">
+          <h1 class="text-2xl font-bold">Order catalogue</h1>
+          <button class="px-4 py-2 bg-purple-600 text-white rounded">New item</button>
+        </div>
+        <div class="bg-white shadow rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Pegawai</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Karyawan</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Departement</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <!-- <td class="px-6 py-4 whitespace-nowrap">01</td>
+                <td class="px-6 py-4 whitespace-nowrap">Agas</td>
+                <td class="px-6 py-4 whitespace-nowrap">109813</td>
+                <td class="px-6 py-4 whitespace-nowrap">Staff</td>
+                <td class="px-6 py-4 whitespace-nowrap">Aplikasi Bisnis</td> -->
+                <!-- <script src = "script.js"></script> -->
+               
+                <!-- <script>let no = 1;
+                        const namaPegawai = "Agas";
+                        let idKaryawan = 109813;
+                        let jabatan = "Staff";
+                        let departement = "Aplikasi Bisnis"; </script> -->
+                <script>
+                    const dataPegawai = [
+    {
+        id: "1",
+        nama : "agas",
+        idPegawai: "109813",
+        golongan: "1",
+        departement : "Aplikasi Bisnis",
+        jabatan: "Officer" 
+    },
+    {
+        id: "2",
+        nama : "agas1",
+        idPegawai: "109814",
+        golongan: "1",
+        departement : "Aplikasi Bisnis",
+        jabatan: "Officer" 
+    },
+    {
+        id: "3",
+        nama : "agas",
+        idPegawai: "109815",
+        golongan: "1",
+        departement : "Aplikasi Bisnis",
+        jabatan: "Officer" 
+    },
+];
+      </script> 
+               
+                <td class="px-6 py-4 whitespace-nowrap"><script>document.write(dataPegawai[1].id)</script></td>
+                <td class="px-6 py-4 whitespace-nowrap"><script>document.write(dataPegawai[1].nama)</script></td>
+                <td class="px-6 py-4 whitespace-nowrap"><script>document.write(dataPegawai[1].idPegawai)</script></td>
+                <td class="px-6 py-4 whitespace-nowrap"><script>document.write(dataPegawai[1].jabatan)</script></td>
+                <td class="px-6 py-4 whitespace-nowrap"><script>document.write(dataPegawai[1].departement)</script></td>
+
+               
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <a href="#" class="text-red-600 hover:text-red-900 ml-4">Delete</a>
+                </td>
+              </tr>
+              <!-- Repeat the above <tr> block for more rows -->
+            </tbody>
+          </table>
+          <div class="px-6 py-3 bg-gray-50 flex justify-between items-center">
+            <div>
+              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">1</button>
+              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">2</button>
+              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">3</button>
+              <span class="px-2 py-1">...</span>
+              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">10</button>
+            </div>
+            <div>
+              <select class="p-2 border rounded">
+                <option>Display 10 items</option>
+                <option>Display 20 items</option>
+                <option>Display 50 items</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

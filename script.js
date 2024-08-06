@@ -42,5 +42,66 @@ const dataEmployees = [
     position: "Administrator",
   },
 ];
+/**
+ * menampilkan data semua
+ */
+//dataEmployeesole.log(dataEmployees); 
 
-console.log(dataEmployees);
+/**
+ * function inside object
+ */
+
+const students = {
+  firstName: "Gangzar",
+  address: "Depok",
+  email: "agas@gmail.com",
+  studentDetail: function (){
+    return "my name is " + this.firstName + " my address " + this.address + " my email " + this.email;
+  }
+};
+
+// Log the student details
+//console.log(students.studentDetail());
+
+/**
+ * sample of looping 
+ */
+
+const carCollection = [
+    {
+      name: "BMW",
+      type: "Sedan",
+      country: "Germany"
+    },
+    {
+      name: "VW",
+      type: "city car",
+      country: "Germany"
+    },
+    {
+      name: "Honda",
+      type: "Family Car",
+      country: "Japan"
+    }
+];
+
+let car = "";
+for (let x in carCollection) {
+  car += `Name: ${carCollection[x].name}, Type: ${carCollection[x].type}, Country: ${carCollection[x].country} `;
+}
+
+//console.log(car.length);
+console.log(car);
+
+/**
+ * conditional
+ */
+
+let number1 = 100;
+let number2 = 50;
+
+if (number1 < number2) {
+  console.log(" you false");
+} else {
+console.log( "you are awesome");
+}

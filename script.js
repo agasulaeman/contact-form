@@ -40,12 +40,23 @@ const dataEmployees = [
     group: "1",
     departement: "Aplikasi Penjualan",
     position: "Administrator",
-  },
+  }
 ];
 /**
- * menampilkan data semua
+ * pembuatan function untuk menampilkan data semua
  */
-//dataEmployeesole.log(dataEmployees); 
+
+function getAllDataEmployees() {
+  return dataEmployees;
+}
+
+/**
+ * panggil function getAllDataEmployees
+ */
+
+console.log(getAllDataEmployees());
+
+
 
 /**
  * function inside object

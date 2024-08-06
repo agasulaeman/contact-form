@@ -93,6 +93,36 @@ for (let x in carCollection) {
 //console.log(car.length);
 console.log(car);
 
+
+
+const employees = [
+  {
+    name: "Agas",
+    address: "Depok",
+    country: "Indonesia",
+    email: "agas@gmail.com"
+  },
+  {
+    name: "Gangzar",
+    address: "Jakarta",
+    country: "Singapore",
+    email: "gangzar@gmail.com"
+  },
+  {
+    name: "Sulaeman",
+    address: "Madiun",
+    country: "France",
+    email: "sulaeman@gmail.com"
+  }
+];
+
+let dataKaryawan = "";
+for (let x in employees) {
+  dataKaryawan += `Name: ${employees[x].name}, Alamat: ${employees[x].address}, Country: ${employees[x].country}, Email: ${employees[x].email} `;
+}
+console.log(dataKaryawan);
+
+
 /**
  * conditional
  */
@@ -105,3 +135,11 @@ if (number1 < number2) {
 } else {
 console.log( "you are awesome");
 }
+
+const nama = "agas";
+
+
+let kata = 'gangzar agas';
+let kataIndexBesar = kata.split.toString;
+console.log(kataIndexBesar[0]);
+console.log(kata.includes('agas'));

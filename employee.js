@@ -46,18 +46,18 @@ const dataEmployees = [
     }
   ];
   /**
-   * pembuatan function untuk menampilkan data semua
+   * pembuatan function untuk menampilkan data semua without looping
    */
   
-  function getAllDataEmployees() {
-    return dataEmployees;
-  }
+//   function getAllDataEmployees() {
+//     return dataEmployees;
+//   }
   
   /**
    * panggil function getAllDataEmployees
    */
   
-  console.log(getAllDataEmployees());
+//  console.log(getAllDataEmployees());
   
   
   
@@ -104,6 +104,30 @@ const dataEmployees = [
     position: "Supervisor Analyst",
     email: "suseno@gmail.com"
   });
+  console.log(dataEmployees);
 
+
+  function getAllEmployees() {
+    for (let i = 0; i < dataEmployees.length; i++) {
+      console.log(dataEmployees[i]);
+    }
+  }
+  getAllEmployees();
+
+  /**
+   * function for delete based on employeeId
+   */
+
+  function deleteEmployee(employeeId) {
+    const index = dataEmployees.findIndex(employee => employee.employeeId === employeeId);
+    
+    if (index !== -1) {
+      dataEmployees.splice(index, 1);
+      console.log(`Employee with ID ${employeeId} has been deleted.`);
+    } else {
+      console.log(`Employee with ID ${employeeId} not found.`);
+    }
+  }
   
+  deleteEmployee("109816");
   console.log(dataEmployees);

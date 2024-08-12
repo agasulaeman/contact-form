@@ -66,6 +66,51 @@ const dataEmployees = [
  * adding new employee Data to LocalStorage
  */
 
-// function addNewEmployee(key,newEmployee){
-//     const currentEmployeeData = 
-// }
+function addNewEmployeeToLocalStorage(employeeData){
+ let dataEmployees;
+ if (localStorage.getItem('employees') === null) {
+  dataEmployees = [];
+ } else {
+  try {
+    dataEmployees = JSON.parse(localStorage.getItem('employees'));
+  } catch (error) {
+    console.error('Error parsing Json EmployeeData: ', error);
+    dataEmployees = [];    
+  }
+ }
+ dataEmployees.push(employeeData);
+ const stringifyData = JSON.stringify(dataEmployees);
+ localStorage.setItem('employees',stringifyData);
+ console.info(`Employees '${employeeData.name}' berhasil ter insert.`);
+}
+
+const newEmployee = {
+  id: "8",
+  name: "Adam Suseno",
+  employeeId: "409818",
+  group: "4",
+  departement: "Departement Keuangan",
+  position: "Supervisor Analyst",
+  email: "suseno@gmail.com"
+};
+
+//addNewEmployeeToLocalStorage(newEmployee);
+console.log(localStorage.getItem('employees'));
+
+function deleteEmployeeDataFromLocalStorage(employeeId) {
+  const deleteEmployee = JSON.parse(localStorage.getItem('employees'));
+  const index = deleteEmployee.findIndex(employee => employee.employeeId === employeeId);
+
+  if (index !== -1) {
+    dataEmployees.splice(index, 1);
+
+    localStorage.setItem('employees', JSON.stringify(dataEmployees));
+
+    console.log(`Employee with ID ${employeeId} deleted successfully.`);
+  } else {
+    console.log(`Employee with ID ${employeeId} not found.`);
+  }
+}
+
+deleteEmployeeDataFromLocalStorage("109814");
+console.log(localStorage.getItem('employees'));

@@ -94,7 +94,7 @@ const newEmployee = {
   email: "suseno@gmail.com"
 };
 
-//addNewEmployeeToLocalStorage(newEmployee);
+addNewEmployeeToLocalStorage(newEmployee);
 console.log(localStorage.getItem('employees'));
 
 function deleteEmployeeDataFromLocalStorage(employeeId) {
@@ -112,5 +112,5 @@ function deleteEmployeeDataFromLocalStorage(employeeId) {
   }
 }
 
-deleteEmployeeDataFromLocalStorage("109814");
+//deleteEmployeeDataFromLocalStorage("109814");
 console.log(localStorage.getItem('employees'));

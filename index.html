@@ -23,7 +23,7 @@
       <nav class="flex-grow">
         <ul class="p-4 space-y-4">
           <li>
-            <a href="#" class="flex items-center text-white"><span class="ml-2">Dashboard</span></a>
+            <a href="index.html" class="flex items-center text-white"><span class="ml-2">Dashboard</span></a>
           </li>
           <li>
             <a href="#" class="flex items-center text-white"><span class="ml-2">User management</span></a>
@@ -62,94 +62,104 @@
           <img src="./assets/hamster.png" alt="User Avatar" class="h-10 w-10 rounded-full" />
         </div>
       </header>
-      <section>
-        <div class="flex justify-between items-center mb-4">
-          <h1 class="text-2xl font-bold">Order catalogue</h1>
-          <button class="px-4 py-2 bg-purple-600 text-white rounded">
-            New item
-          </button>
-        </div>
-        <div class="bg-white shadow rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ID
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Nama Pegawai
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ID Karyawan
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Jabatan
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Departement
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- ID -->
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- Name -->
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- Employee ID -->
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- Position -->
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- Department -->
-                </td>
+      <main id="content" class="container-black">
+        <section id="content-section" class="item black">
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Order catalogue</h1>
+            <button onclick="window.location.href='item.html'" class="px-4 py-2 bg-purple-600 text-white rounded">
+              New Item
+            </button>
+          </div>
+          <div class="bg-white shadow rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead id="indexEmployee" class="bg-gray-50">
+                <tr>
+                  <th id="id" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    ID
+                  </th>
+                  <th id="name" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Nama Pegawai
+                  </th>
+                  <th id="employeeID"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    ID Karyawan
+                  </th>
+                  <th id="emailID"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th id="position"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Jabatan
+                  </th>
+                  <th id="departement"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Departement
+                  </th>
+                  <th id="action"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="employeesData" class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td id="indexEmployees" class="px-6 py-4 whitespace-nowrap">
+                    <!-- ID -->
+                  </td>
+                  <td id="employeeName" class="px-6 py-4 whitespace-nowrap">
+                    <!-- Name -->
+                  </td>
+                  <td id="employeesID" class="px-6 py-4 whitespace-nowrap">
+                    <!-- Employee ID -->
+                  </td>
+                  <td id="employeePosition" class="px-6 py-4 whitespace-nowrap">
+                    <!-- Position -->
+                  </td>
+                  <td id="employeeDepartement" class="px-6 py-4 whitespace-nowrap">
+                    <!-- Department -->
+                  </td>
 
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                    Edit
-                  </a>
-                  <a href="#" class="text-red-600 hover:text-red-900 ml-4">
-                    Delete
-                  </a>
-                </td>
-              </tr>
-              <!-- Repeat the above <tr> block for more rows -->
-            </tbody>
-          </table>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                      Edit
+                    </a>
+                    <a href="#" class="text-red-600 hover:text-red-900 ml-4">
+                      Delete
+                    </a>
+                  </td>
+                </tr>
+                <!-- Repeat the above <tr> block for more rows -->
+              </tbody>
+            </table>
 
-          <div class="px-6 py-3 bg-gray-50 flex justify-between items-center">
-            <div>
-              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                1
-              </button>
-              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                2
-              </button>
-              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                3
-              </button>
-              <span class="px-2 py-1">...</span>
-              <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                10
-              </button>
-            </div>
-            <div>
-              <select class="p-2 border rounded">
-                <option>Display 10 items</option>
-                <option>Display 20 items</option>
-                <option>Display 50 items</option>
-              </select>
+            <div class="px-6 py-3 bg-gray-50 flex justify-between items-center">
+              <div>
+                <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                  1
+                </button>
+                <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                  2
+                </button>
+                <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                  3
+                </button>
+                <span class="px-2 py-1">...</span>
+                <button class="px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                  10
+                </button>
+              </div>
+              <div>
+                <select class="p-2 border rounded">
+                  <option>Display 10 items</option>
+                  <option>Display 20 items</option>
+                  <option>Display 50 items</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   </div>
 

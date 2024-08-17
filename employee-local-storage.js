@@ -1,50 +1,83 @@
 const dataEmployees = [
-    {
-      id: "1",
-      name: "Agas",
-      employeeId: "109813",
-      group: "1",
-      departement: "Aplikasi Bisnis",
-      position: "Officer",
-      email: "agas@gmail.com"
-    },
-    {
-      id: "2",
-      name: "Obby",
-      employeeId: "109814",
-      group: "1",
-      departement: "Aplikasi Bisnis",
-      position: "Officer",
-      email: "obby@gmail.com"
-    },
-    {
-      id: "3",
-      name: "Ryan",
-      employeeId: "109815",
-      group: "1",
-      departement: "Aplikasi Bisnis",
-      position: "Officer",
-      email: "ryan@gmail.com"
-    },
-    {
-      id: "4",
-      name: "Rizki",
-      employeeId: "109816",
-      group: "1",
-      departement: "Aplikasi Penjualan",
-      position: "Manager",
-      email: "rizki@gmail.com"
-    },
-    {
-      id: "5",
-      name: "Yurik",
-      employeeId: "109817",
-      group: "1",
-      departement: "Aplikasi Penjualan",
-      position: "Administrator",
-      email: "yurik@gmail.com"
-    }
-  ];
+  {
+    id: "1",
+    name: "Agas",
+    employeeId: "109813",
+    group: "1",
+    departement: "Aplikasi Bisnis",
+    position: "Officer",
+    email: "agas@gmail.com"
+  },
+  {
+    id: "2",
+    name: "Obby",
+    employeeId: "109814",
+    group: "1",
+    departement: "Aplikasi Support",
+    position: "Officer",
+    email: "obby@gmail.com"
+  },
+  {
+    id: "3",
+    name: "Ryan",
+    employeeId: "109815",
+    group: "1",
+    departement: "Aplikasi Bisnis",
+    position: "Officer",
+    email: "ryan@gmail.com"
+  },
+  {
+    id: "4",
+    name: "Rizki",
+    employeeId: "109816",
+    group: "1",
+    departement: "Aplikasi Penjualan",
+    position: "Manager",
+    email: "rizki@gmail.com"
+  },
+  {
+    id: "5",
+    name: "Yurik",
+    employeeId: "109817",
+    group: "1",
+    departement: "Aplikasi Penjualan",
+    position: "Admin",
+    email: "yurik@gmail.com"
+  }
+];
+
+// Save employee data to local storage
+localStorage.setItem('employees', JSON.stringify(dataEmployees));
+
+function displayEmployeeData() {
+  // mengembalikan employee data from local storage
+  const employees = JSON.parse(localStorage.getItem('employees')) || [];
+  console.log(employees);
+
+  const listEmployees = document.getElementById('employeesData');
+  listEmployees.innerHTML = '';
+
+  employees.forEach(employee => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="px-6 py-4 whitespace-nowrap">${employee.id}</td>
+      <td class="px-6 py-4 whitespace-nowrap">${employee.name}</td>
+      <td class="px-6 py-4 whitespace-nowrap">${employee.employeeId}</td>
+      <td class="px-6 py-4 whitespace-nowrap">${employee.email}</td>
+      <td class="px-6 py-4 whitespace-nowrap">${employee.position}</td>
+      <td class="px-6 py-4 whitespace-nowrap">${employee.departement}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+        <a href="#" class="text-red-600 hover:text-red-900 ml-4">Delete</a>
+      </td>
+    `;
+    listEmployees.appendChild(row);
+  });
+}
+
+displayEmployeeData();
+
+
 
   function saveEmployeestoLocalStorage() {
     localStorage.setItem("dataEmployees",JSON.stringify(dataEmployees));
@@ -94,7 +127,7 @@ const newEmployee = {
   email: "suseno@gmail.com"
 };
 
-addNewEmployeeToLocalStorage(newEmployee);
+//addNewEmployeeToLocalStorage(newEmployee);
 console.log(localStorage.getItem('employees'));
 
 function deleteEmployeeDataFromLocalStorage(employeeId) {

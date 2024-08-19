@@ -51,7 +51,6 @@ function storeEmployeesInLocalStorage(dataEmployees) {
     localStorage.setItem('employees', JSON.stringify(dataEmployees));
   } else {
     console.error('localStorage is not supported in this browser.');
-    // Consider alternative storage or handling
   }
 }
 
@@ -84,7 +83,7 @@ function displayEmployeeData() {
     const deleteLinks = document.querySelectorAll('.delete-employee');
     deleteLinks.forEach(link => {
       link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+        event.preventDefault();
 
         const employeeIdToDelete = this.getAttribute('data-employee-id');
         const confirmDelete = confirm(`Apakah Anda yakin ingin menghapus employee dengan ID ${employeeIdToDelete}?`);
@@ -119,45 +118,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const submitButton = document.getElementById('submitButton');
   const employeeForm = document.getElementById('employeeForm');
+  const employeeData = JSON.parse(localStorage.getItem('employeeData'));
 
-  if (submitButton && employeeForm) {
-    submitButton.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent default form submission behavior
+  if (employeeData) {
 
-      const confirmed = confirm('Are you sure you want to save the employee data?');
-      if (confirmed) {
-        const userName = document.getElementById('username').value;
-        const employeeId = document.getElementById('employeeId').value;
-        const email = document.getElementById('email').value;
-        const position = document.querySelector('#position input[type="radio"]:checked').id;
-        const departement = document.querySelector('#departement select').value;
+      document.getElementById('username').value = employeeData.username;
+      document.getElementById('email').value = employeeData.email;
+      document.getElementById('employeeId').value = employeeData.employeeId;
 
-        let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-        console.log(dataEmployees);
+      document.getElementById(employeeData.position).checked = true;
 
-        const newEmployee = {
-          id: (dataEmployees.length + 1).toString(),
-          name: userName,
-          employeeId: employeeId,
-          departement: departement,
-          position: position,
-          email: email
-        };
-
-        dataEmployees.push(newEmployee);
-        localStorage.setItem('employees', JSON.stringify(dataEmployees));
-        window.location.href = 'index.html';
-        alert("Employee Berhasil tersimpan");
-      } else {
-        window.location.href = 'index.html';
-        console.log('Form submission canceled.');
+      const departmentSelect = document.querySelector('select');
+      for (let option of departmentSelect.options) {
+          if (option.text === employeeData.department) {
+              option.selected = true;
+              break;
+          }
       }
-    });
   }
 
+  if (submitButton && employeeForm) {
+      submitButton.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const confirmed = confirm('Are you sure you want to save the employee data?');
+          if (confirmed) {
+              const userName = document.getElementById('username').value;
+              const employeeId = document.getElementById('employeeId').value;
+              const email = document.getElementById('email').value;
+              const position = document.querySelector('#position input[type="radio"]:checked').id;
+              const departement = document.querySelector('#departement select').value;
+
+              let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+              console.log(dataEmployees);
+
+              const newEmployee = {
+                  id: (dataEmployees.length + 1).toString(),
+                  name: userName,
+                  employeeId: employeeId,
+                  departement: departement,
+                  position: position,
+                  email: email
+              };
+
+              const existingEmployeeIndex = dataEmployees.findIndex(emp => emp.employeeId === employeeId);
+              if (existingEmployeeIndex >= 0) {
+                  dataEmployees[existingEmployeeIndex] = newEmployee;
+              } else {
+                  dataEmployees.push(newEmployee);
+              }
+
+              localStorage.setItem('employees', JSON.stringify(dataEmployees));
+
+              localStorage.removeItem('employeeData');
+
+              alert("Employee data successfully saved.");
+              window.location.href = 'index.html';
+          } else {
+              console.log('Form submission canceled.');
+              window.location.href = 'index.html';
+          }
+      });
+  }
   displayEmployeeData();
 });
 
 function redirectToEdit(employeeID) {
-  window.location.href = `item.html?employeeID=${employeeID}`;
+  const employeeData = getEmployeeData(employeeID);
+  
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
+
+   window.location.href = 'item.html';
 }

@@ -74,13 +74,43 @@ function displayEmployeeData() {
         <td class="px-6 py-4 whitespace-nowrap">${employee.departement}</td>
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
           <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-          <a href="#" class="text-red-600 hover:text-red-900 ml-4">Delete</a>
+          <a href="#" class="text-red-600 hover:text-red-900 ml-4 delete-employee" data-employee-id="${employee.employeeId}">Delete</a>
         </td>
       `;
       listEmployees.appendChild(row);
     });
+
+    // Attach delete event listener to each delete link
+    const deleteLinks = document.querySelectorAll('.delete-employee');
+    deleteLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        const employeeIdToDelete = this.getAttribute('data-employee-id');
+        const confirmDelete = confirm(`Apakah Anda yakin ingin menghapus employee dengan ID ${employeeIdToDelete}?`);
+        if (confirmDelete) {
+          deleteEmployee(employeeIdToDelete);
+        }
+      });
+    });
   } else {
     console.error('employeesData element not found in the DOM');
+  }
+}
+
+function deleteEmployee(employeeId) {
+  let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+  console.log('Before delete:', dataEmployees);
+
+  const filteredEmployees = dataEmployees.filter(employee => employee.employeeId !== employeeId);
+
+  if (dataEmployees.length !== filteredEmployees.length) {
+    localStorage.setItem('employees', JSON.stringify(filteredEmployees));
+    alert(`Employee with ID ${employeeId} has been deleted.`);
+    console.log('After delete:', filteredEmployees);
+    displayEmployeeData(); // Refresh the displayed data
+  } else {
+    alert(`Employee with ID ${employeeId} not found.`);
   }
 }
 
@@ -89,11 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const submitButton = document.getElementById('submitButton');
   const employeeForm = document.getElementById('employeeForm');
-  const deleteButton = document.getElementById('deleteButton');
-
-  console.log('submitButton:', submitButton);
-  console.log('deleteButton:', deleteButton);
-  console.log('employeeForm:', employeeForm);
 
   if (submitButton && employeeForm) {
     submitButton.addEventListener('click', (event) => {
@@ -128,64 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Form submission canceled.');
       }
     });
-  } else {
-    console.error('submitButton or employeeForm not found in the DOM');
   }
 
-  if (deleteButton) {
-    deleteButton.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent default button behavior
-
-      const confirmDelete = confirm('Enter the employee ID to delete:');
-      if (confirmDelete) {
-        let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-        console.log('Before delete:', dataEmployees);
-
-        const filteredEmployees = dataEmployees.filter(employee => employee.employeeId !== employeeIdToDelete);
-        
-        if (dataEmployees.length !== filteredEmployees.length) {
-          localStorage.setItem('employees', JSON.stringify(filteredEmployees));
-          alert(`Employee with ID ${employeeIdToDelete} has been deleted.`);
-          console.log('After delete:', filteredEmployees);
-        } else {
-          alert(`Employee with ID ${employeeIdToDelete} not found.`);
-        }
-      }
-    });
-  } else {
-    console.error('deleteButton not found in the DOM');
-  }
+  displayEmployeeData();
 });
 
-function confirmDelete(employeeId) {
-  const isConfirmed = confirm('Are you sure you want to delete this employee?');
-  if (isConfirmed) {
-    deleteEmployee(employeeId);
-  } else {
-    console.log('Delete action cancelled');
-  }
+function redirectToEdit(employeeID) {
+  window.location.href = `item.html?employeeID=${employeeID}`;
 }
-
-function confirmEdit(employeeId) {
-  const isConfirmed = confirm('Are you sure you want to edit this employee?');
-  if (isConfirmed) {
-    console.log('Editing employee with ID:', employeeId);
-    // Proceed with edit action, like opening an edit form
-    openEditForm(employeeId); // Example function to open the edit form
-  } else {
-    console.log('Edit action cancelled');
-  }
-}
-
-// Example functions for deleting and editing
-function deleteEmployee(employeeId) {
-  // Logic to delete the employee goes here
-  console.log('Employee with ID:', employeeId, 'has been deleted.');
-}
-
-function openEditForm(employeeId) {
-  // Logic to open the edit form goes here
-  console.log('Opening edit form for employee with ID:', employeeId);
-}
-
-displayEmployeeData();

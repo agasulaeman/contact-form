@@ -118,16 +118,16 @@ const dataEmployees = [
    * function for delete based on employeeId
    */
 
-  function deleteEmployee(employeeId) {
-    const index = dataEmployees.findIndex(employee => employee.employeeId === employeeId);
+  // function deleteEmployee(employeeId) {
+  //   const index = dataEmployees.findIndex(employee => employee.employeeId === employeeId);
     
-    if (index !== -1) {
-      dataEmployees.splice(index, 1);
-      console.log(`Employee with ID ${employeeId} has been deleted.`);
-    } else {
-      console.log(`Employee with ID ${employeeId} not found.`);
-    }
-  }
+  //   if (index !== -1) {
+  //     dataEmployees.splice(index, 1);
+  //     console.log(`Employee with ID ${employeeId} has been deleted.`);
+  //   } else {
+  //     console.log(`Employee with ID ${employeeId} not found.`);
+  //   }
+  // }
   
-  deleteEmployee("109816");
-  console.log(dataEmployees);
+  // deleteEmployee("109816");
+  // console.log(dataEmployees);

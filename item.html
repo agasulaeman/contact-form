@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-purple-900 text-white flex flex-col">
+            <div class="p-4 text-center text-lg font-bold">
+                <div class="flex items-center justify-center">
+                    <img src="https://media.licdn.com/dms/image/D560BAQHjxY3v_KscFA/company-logo_200_200/0/1705745316360?e=2147483647&v=beta&t=XvzekcX2Mkdp-0k2jERIg_n4yRKfMBm7egLIorRAHok"
+                        alt="Company Logo" class="h-10 w-10 mr-2" />
+                    <span>Company name</span>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="p-4 space-y-4">
+                    <li>
+                        <a href="index.html" class="flex items-center text-white"><span
+                                class="ml-2">Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-white"><span class="ml-2">User management</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-white"><span class="ml-2">Documents</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-white"><span class="ml-2">Statistics</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-white"><span class="ml-2">Settings</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-4">
+                <button class="w-full py-2 bg-purple-800 hover:bg-purple-700 text-white rounded">
+                    Logout
+                </button>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-grow p-6">
+            <header class="flex items-center justify-between mb-6">
+                <input type="text" placeholder="Search all..." class="w-1/3 p-2 border rounded" />
+                <div class="flex items-center">
+                    <button class="mr-4 p-2 rounded-full bg-purple-100">
+                        <span class="sr-only">Notifications</span>
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118.5 14.5V11a7.5 7.5 0 00-15 0v3.5c0 .538-.214 1.05-.595 1.405L2 17h5m0 0a3 3 0 006 0m-6 0h6">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="./assets/hamster.png" alt="User Avatar" class="h-10 w-10 rounded-full" />
+                </div>
+            </header>
+            <main id="content" class="container-black">
+                <!-- Form Content -->
+                <section class="bg-white p-6 rounded-lg shadow-md">
+                    <form>
+                        <div id="username" class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Name</label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="username" type="text" placeholder="Enter username">
+                        </div>
+                        <div id="email" class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Email</label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="password" type="password" placeholder="Enter password">
+                            <!-- <p class="text-gray-600 text-xs mt-1">Your password is between 4 and 12 characters</p> -->
+                        </div>
+                        <div id="employeeId" class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="input-text">Employee
+                                ID</label>
+                            <input
+                                class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="input-text" type="text" placeholder="Employee ID">
+                            <p class="text-red-500 text-xs italic">Error message informing me of a problem</p>
+                        </div>
+                        <!-- <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Remember me</label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div> -->
+                        <div id="position" class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Position</label>
+                            <div class="flex items-center">
+                                <input type="radio" name="radio-group" class="mr-2" checked>
+                                <label>Admin</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="radio-group" class="mr-2">
+                                <label>Officer</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="radio-group" class="mr-2">
+                                <label>Manager</label>
+                            </div>
+                        </div>
+                        <div id="departement" class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Departement</label>
+                            <select
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option>Aplikasi Bisnis</option>
+                                <option>Aplikasi Support</option>
+                                <option>Aplikasi Penjualan</option>
+                            </select>
+                        </div>
+                        <div id="submit" class="flex justify-between mt-6">
+                            <button type="submit"
+                                class="bg-purple-900 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                                Submit Form
+                            </button>
+                            <button type="reset"
+                                class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- <script src="local-storage.js"></script> -->
+    <script src="employee.js"></script>
+</body>
+
+</html>

@@ -46,104 +46,147 @@ const dataEmployees = [
   }
 ];
 
-// Save employee data to local storage
-localStorage.setItem('employees', JSON.stringify(dataEmployees));
+function storeEmployeesInLocalStorage(dataEmployees) {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('employees', JSON.stringify(dataEmployees));
+  } else {
+    console.error('localStorage is not supported in this browser.');
+  }
+}
 
 function displayEmployeeData() {
-  // mengembalikan employee data from local storage
   const employees = JSON.parse(localStorage.getItem('employees')) || [];
   console.log(employees);
 
   const listEmployees = document.getElementById('employeesData');
-  listEmployees.innerHTML = '';
+  if (listEmployees) {
+    listEmployees.innerHTML = '';
 
-  employees.forEach(employee => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td class="px-6 py-4 whitespace-nowrap">${employee.id}</td>
-      <td class="px-6 py-4 whitespace-nowrap">${employee.name}</td>
-      <td class="px-6 py-4 whitespace-nowrap">${employee.employeeId}</td>
-      <td class="px-6 py-4 whitespace-nowrap">${employee.email}</td>
-      <td class="px-6 py-4 whitespace-nowrap">${employee.position}</td>
-      <td class="px-6 py-4 whitespace-nowrap">${employee.departement}</td>
-      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-        <a href="#" class="text-red-600 hover:text-red-900 ml-4">Delete</a>
-      </td>
-    `;
-    listEmployees.appendChild(row);
-  });
-}
+    employees.forEach(employee => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap">${employee.id}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${employee.name}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${employee.employeeId}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${employee.email}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${employee.position}</td>
+        <td class="px-6 py-4 whitespace-nowrap">${employee.departement}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+          <a href="#" class="text-red-600 hover:text-red-900 ml-4 delete-employee" data-employee-id="${employee.employeeId}">Delete</a>
+        </td>
+      `;
+      listEmployees.appendChild(row);
+    });
 
-displayEmployeeData();
+    // Attach delete event listener to each delete link
+    const deleteLinks = document.querySelectorAll('.delete-employee');
+    deleteLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
 
-
-
-  function saveEmployeestoLocalStorage() {
-    localStorage.setItem("dataEmployees",JSON.stringify(dataEmployees));
-  }
-  saveEmployeestoLocalStorage("dataEmployees",dataEmployees);
-  function getDataEmployeeFromLocalStorage(key) {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data):[];
-  }
-
-  /**
-   * pengembalian data dari object JSON menjadi variable
-   */
-
-  const employeeData = getDataEmployeeFromLocalStorage("employees");
-  console.log(employeeData);
-
-/**
- * adding new employee Data to LocalStorage
- */
-
-function addNewEmployeeToLocalStorage(employeeData){
- let dataEmployees;
- if (localStorage.getItem('employees') === null) {
-  dataEmployees = [];
- } else {
-  try {
-    dataEmployees = JSON.parse(localStorage.getItem('employees'));
-  } catch (error) {
-    console.error('Error parsing Json EmployeeData: ', error);
-    dataEmployees = [];    
-  }
- }
- dataEmployees.push(employeeData);
- const stringifyData = JSON.stringify(dataEmployees);
- localStorage.setItem('employees',stringifyData);
- console.info(`Employees '${employeeData.name}' berhasil ter insert.`);
-}
-
-const newEmployee = {
-  id: "8",
-  name: "Adam Suseno",
-  employeeId: "409818",
-  group: "4",
-  departement: "Departement Keuangan",
-  position: "Supervisor Analyst",
-  email: "suseno@gmail.com"
-};
-
-//addNewEmployeeToLocalStorage(newEmployee);
-console.log(localStorage.getItem('employees'));
-
-function deleteEmployeeDataFromLocalStorage(employeeId) {
-  const deleteEmployee = JSON.parse(localStorage.getItem('employees'));
-  const index = deleteEmployee.findIndex(employee => employee.employeeId === employeeId);
-
-  if (index !== -1) {
-    dataEmployees.splice(index, 1);
-
-    localStorage.setItem('employees', JSON.stringify(dataEmployees));
-
-    console.log(`Employee with ID ${employeeId} deleted successfully.`);
+        const employeeIdToDelete = this.getAttribute('data-employee-id');
+        const confirmDelete = confirm(`Apakah Anda yakin ingin menghapus employee dengan ID ${employeeIdToDelete}?`);
+        if (confirmDelete) {
+          deleteEmployee(employeeIdToDelete);
+        }
+      });
+    });
   } else {
-    console.log(`Employee with ID ${employeeId} not found.`);
+    console.error('employeesData element not found in the DOM');
   }
 }
 
-//deleteEmployeeDataFromLocalStorage("109814");
-console.log(localStorage.getItem('employees'));
+function deleteEmployee(employeeId) {
+  let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+  console.log('Before delete:', dataEmployees);
+
+  const filteredEmployees = dataEmployees.filter(employee => employee.employeeId !== employeeId);
+
+  if (dataEmployees.length !== filteredEmployees.length) {
+    localStorage.setItem('employees', JSON.stringify(filteredEmployees));
+    alert(`Employee with ID ${employeeId} has been deleted.`);
+    console.log('After delete:', filteredEmployees);
+    displayEmployeeData(); // Refresh the displayed data
+  } else {
+    alert(`Employee with ID ${employeeId} not found.`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded');
+
+  const submitButton = document.getElementById('submitButton');
+  const employeeForm = document.getElementById('employeeForm');
+  const employeeData = JSON.parse(localStorage.getItem('employeeData'));
+
+  if (employeeData) {
+
+      document.getElementById('username').value = employeeData.username;
+      document.getElementById('email').value = employeeData.email;
+      document.getElementById('employeeId').value = employeeData.employeeId;
+
+      document.getElementById(employeeData.position).checked = true;
+
+      const departmentSelect = document.querySelector('select');
+      for (let option of departmentSelect.options) {
+          if (option.text === employeeData.department) {
+              option.selected = true;
+              break;
+          }
+      }
+  }
+
+  if (submitButton && employeeForm) {
+      submitButton.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const confirmed = confirm('Are you sure you want to save the employee data?');
+          if (confirmed) {
+              const userName = document.getElementById('username').value;
+              const employeeId = document.getElementById('employeeId').value;
+              const email = document.getElementById('email').value;
+              const position = document.querySelector('#position input[type="radio"]:checked').id;
+              const departement = document.querySelector('#departement select').value;
+
+              let dataEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+              console.log(dataEmployees);
+
+              const newEmployee = {
+                  id: (dataEmployees.length + 1).toString(),
+                  name: userName,
+                  employeeId: employeeId,
+                  departement: departement,
+                  position: position,
+                  email: email
+              };
+
+              const existingEmployeeIndex = dataEmployees.findIndex(emp => emp.employeeId === employeeId);
+              if (existingEmployeeIndex >= 0) {
+                  dataEmployees[existingEmployeeIndex] = newEmployee;
+              } else {
+                  dataEmployees.push(newEmployee);
+              }
+
+              localStorage.setItem('employees', JSON.stringify(dataEmployees));
+
+              localStorage.removeItem('employeeData');
+
+              alert("Employee data successfully saved.");
+              window.location.href = 'index.html';
+          } else {
+              console.log('Form submission canceled.');
+              window.location.href = 'index.html';
+          }
+      });
+  }
+  displayEmployeeData();
+});
+
+function redirectToEdit(employeeID) {
+  const employeeData = getEmployeeData(employeeID);
+  
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
+
+   window.location.href = 'item.html';
+}

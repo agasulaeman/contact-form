@@ -62,31 +62,31 @@
                     <img src="./assets/hamster.png" alt="User Avatar" class="h-10 w-10 rounded-full" />
                 </div>
             </header>
-            <main id="content" class="container-black">
+            <main id="dataKaryawan" class="container-black">
                 <!-- Form Content -->
                 <section class="bg-white p-6 rounded-lg shadow-md">
-                    <form>
-                        <div id="username" class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Name</label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="username" type="text" placeholder="Enter username">
-                        </div>
-                        <div id="email" class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Email</label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="password" type="password" placeholder="Enter password">
-                            <!-- <p class="text-gray-600 text-xs mt-1">Your password is between 4 and 12 characters</p> -->
-                        </div>
-                        <div id="employeeId" class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="input-text">Employee
-                                ID</label>
-                            <input
-                                class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="input-text" type="text" placeholder="Employee ID">
-                            <p class="text-red-500 text-xs italic">Error message informing me of a problem</p>
-                        </div>
+                    <form id="employeeForm">
+                        <!-- <div id="username" class="mb-4"> -->
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Name</label>
+                        <input type="text" id="username"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Username">
+                        <!-- </div> -->
+                        <!-- <div id="email" class="mb-4"> -->
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                        <input type="text" id="email"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Email">
+                        <!-- <p class="text-gray-600 text-xs mt-1">Your password is between 4 and 12 characters</p> -->
+                        <!-- </div> -->
+                        <!-- <div id="employeeId" class="mb-4"> -->
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="input-text">Employee
+                            ID</label>
+                        <input type="text" id="employeeId"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Employee ID">
+                        <!-- <p class="text-red-500 text-xs italic">Error message informing me of a problem</p> -->
+                        <!-- </div> -->
                         <!-- <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Remember me</label>
                             <label class="switch">
@@ -97,15 +97,15 @@
                         <div id="position" class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Position</label>
                             <div class="flex items-center">
-                                <input type="radio" name="radio-group" class="mr-2" checked>
+                                <input type="radio" id="Admin" name="radio-group" class="mr-2" checked>
                                 <label>Admin</label>
                             </div>
                             <div class="flex items-center">
-                                <input type="radio" name="radio-group" class="mr-2">
+                                <input type="radio" id="Officer" name="radio-group" class="mr-2">
                                 <label>Officer</label>
                             </div>
                             <div class="flex items-center">
-                                <input type="radio" name="radio-group" class="mr-2">
+                                <input type="radio" id="Manager" name="radio-group" class="mr-2">
                                 <label>Manager</label>
                             </div>
                         </div>
@@ -118,12 +118,12 @@
                                 <option>Aplikasi Penjualan</option>
                             </select>
                         </div>
-                        <div id="submit" class="flex justify-between mt-6">
-                            <button type="submit"
+                        <div class="flex justify-between mt-6">
+                            <button id="submitButton" type="button"
                                 class="bg-purple-900 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                                 Submit Form
                             </button>
-                            <button type="reset"
+                            <button id="cancel" type="reset"
                                 class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
                                 Cancel
                             </button>
@@ -135,7 +135,7 @@
     </div>
 
     <!-- <script src="local-storage.js"></script> -->
-    <script src="employee.js"></script>
+    <script src="employee-local-storage.js"></script>
 </body>
 
 </html>

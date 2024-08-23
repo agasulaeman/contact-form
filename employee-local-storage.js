@@ -79,7 +79,6 @@ function displayEmployeeData() {
       listEmployees.appendChild(row);
     });
 
-    // Attach delete event listener to each delete link
     const deleteLinks = document.querySelectorAll('.delete-employee');
     deleteLinks.forEach(link => {
       link.addEventListener('click', function(event) {
@@ -107,7 +106,7 @@ function deleteEmployee(employeeId) {
     localStorage.setItem('employees', JSON.stringify(filteredEmployees));
     alert(`Employee with ID ${employeeId} has been deleted.`);
     console.log('After delete:', filteredEmployees);
-    displayEmployeeData(); // Refresh the displayed data
+    displayEmployeeData();
   } else {
     alert(`Employee with ID ${employeeId} not found.`);
   }

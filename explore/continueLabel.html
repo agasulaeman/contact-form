@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        loopNumberi:
+        for (let loopNumberi = 0; loopNumberi < 10; loopNumberi++) {
+            loopNumberJ:
+            for (let loopNumberJ = 1; loopNumberJ < 100; loopNumberJ++) {
+                if (loopNumberJ > 10) {
+                    continue loopNumberi;
+                }
+                document.writeln(`<p>${loopNumberi} - ${loopNumberJ}<\p>`);
+            }
+        }
+    </script>
+</body>
+
+</html>

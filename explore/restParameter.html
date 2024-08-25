@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function sum(name, ...numbers) {
+            let total = 0;
+            for (const number of numbers) {
+                total += number;
+            }
+            document.writeln(`<p>${name} ${total}</p>`);
+        }
+        sum("John", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        sum("toyota", 100, 200, 300, 400, 500);
+
+        const nilaiMurid = [70, 80, 85, 95, 100, 55];
+        sum("Suratno", ...nilaiMurid);
+
+        /**
+         * Arguments Object
+         */
+
+        function oldSum() {
+            let total = 0;
+            for (const number of arguments) {
+                total += number;
+            }
+            document.writeln(`<p>${total}</p>`);
+        }
+        oldSum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    </script>
+</body>
+
+</html>
